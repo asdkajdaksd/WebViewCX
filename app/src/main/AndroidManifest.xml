@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.npm.webview">
+    package="com.a.a.a">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -24,7 +24,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:supportsRtl,android:label">
-        <activity android:name=".web" >
+        <activity android:name="com.a.a.a.a" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <!--<activity-->
-            <!--android:name="com.abc.packagelibrary.web"-->
+            <!--android:name="com.abc.packagelibrary.a"-->
             <!--android:configChanges="orientation|screenSize"-->
             <!--android:hardwareAccelerated="true" />-->
         <!--<activity android:name=".BaseActivity" />-->
