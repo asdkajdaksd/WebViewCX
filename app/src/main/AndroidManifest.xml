@@ -8,13 +8,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <!--<uses-permission android:name="android.permission.GET_TASKS" />-->
+    <!-- <uses-permission android:name="android.permission.GET_TASKS" /> -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <!--<uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />-->
 
+    <!-- <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" /> -->
     <application
         android:allowBackup="false"
         android:icon="${app_icon}"
@@ -24,18 +24,18 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:supportsRtl,android:label">
-        <activity android:name="com.a.a.a.a" >
+        <activity android:name=".a"
+            android:screenOrientation="sensor"
+
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity-->
-            <!--android:name="com.abc.packagelibrary.a"-->
-            <!--android:configChanges="orientation|screenSize"-->
-            <!--android:hardwareAccelerated="true" />-->
-        <!--<activity android:name=".BaseActivity" />-->
+        <activity android:name=".Main2Activity"></activity>
     </application>
 
 </manifest>

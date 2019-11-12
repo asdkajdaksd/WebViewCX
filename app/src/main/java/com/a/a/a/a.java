@@ -1,6 +1,7 @@
 package com.a.a.a;
 
 import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -24,6 +25,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -33,7 +35,6 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.just.agentweb.AbsAgentWebSettings;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.AgentWebSettingsImpl;
@@ -46,11 +47,9 @@ import com.yanzhenjie.permission.Setting;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.callback.StringCallback;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
@@ -66,15 +65,12 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
-
 import okhttp3.Call;
-
 import static android.content.ContentValues.TAG;
 
 
@@ -92,24 +88,31 @@ public class a extends AppCompatActivity {
     private static boolean urlFlag = false;
     private LinearLayout mView;
 
+
+    private  String URL= "https://www.baidu.com/";
+
     private String mSkipurl;
     private String referer;
     private SpUtils mSpUtils;
-    View dView;
+     View dView;
+
+    private Class mClass  = Main2Activity.class ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+
         super.onCreate(savedInstanceState);
         mSpUtils = new SpUtils(this);
         dView = getWindow().getDecorView();
-//        mUrl = getIntent().getStringExtra("aaurl");
-//        mSkipurl = getIntent().getStringExtra("skipurls");
-//        referer = getIntent().getStringExtra("referer");
+
+
+        //网络请求
+        aa();
         initaadfd();
 
 
-        aa();
     }
 
     private void initaadfd() {
@@ -139,11 +142,7 @@ public class a extends AppCompatActivity {
     }
 
     private String goUrl() {
-//        if (urlFlag) {
-            return BuildConfig.URL;
-//        }
-//        return "";
-
+        return BuildConfig.URL;
     }
 
     private IAgentWebSettings getSettings() {
@@ -175,7 +174,7 @@ public class a extends AppCompatActivity {
         super.onDestroy();
     }
 
-    boolean needClearHistory =true;
+    boolean needClearHistory = true;
     private WebViewClient mWebViewClient = new WebViewClient() {
 
         @Override
@@ -253,7 +252,7 @@ public class a extends AppCompatActivity {
                     }
                 }
             } catch (Exception e) {
-                return true;
+                return super.shouldOverrideUrlLoading(view, url);
             }
             return super.shouldOverrideUrlLoading(view, url);
         }
@@ -301,7 +300,7 @@ public class a extends AppCompatActivity {
             if (hitTestResult.getType() == android.webkit.WebView.HitTestResult.IMAGE_TYPE ||
                     hitTestResult.getType() == android.webkit.WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
                 // 弹出保存图片的对话框
-                final AlertDialog.Builder builder = new AlertDialog.Builder(com.a.a.a.a.this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(a.this);
                 builder.setTitle("提示");
                 builder.setMessage("保存图片到本地");
                 builder.setPositiveButton("确认", new android.content.DialogInterface.OnClickListener() {
@@ -552,7 +551,6 @@ public class a extends AppCompatActivity {
         }
     }
 
-
     public static void saveImageToGallery(Context context, Bitmap bmp) throws Exception {
         String fileName;
         File file;
@@ -580,7 +578,6 @@ public class a extends AppCompatActivity {
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + fileName)));
     }
 
-
     //  数据初始化
     private void aa() {
         boolean wi = isWifiProxy(this);
@@ -589,10 +586,7 @@ public class a extends AppCompatActivity {
             go(getComeUrl());
             return;
         }
-
-
         //进行网络请求
-
         OkHttpUtils
                 .post()
                 .addParams("version", "v2")
@@ -604,12 +598,7 @@ public class a extends AppCompatActivity {
                 .connTimeOut(3000)
                 .readTimeOut(3000)
                 .execute(callback);
-
-
-//        510231644
-        Log.d("aaa", "请求的ID   : " + getAppid(com.a.a.a.a.this, BuildConfig.app_id.trim()));
-
-
+//         Log.d("aaa", "请求的ID   : " + getAppid(com.a.a.a.a.this, BuildConfig.app_id.trim()));
     }
 
     String url1 = "http://sz.llcheng888.com/switch/api2/get_url";
@@ -619,11 +608,6 @@ public class a extends AppCompatActivity {
     Callback callback = new StringCallback() {
         @Override
         public void onError(Call call, Exception e, int id) {
-            Log.d("aaa", "请求的ID   : " + getAppid(com.a.a.a.a.this, BuildConfig.app_id.trim()));
-
-            Log.d("aaa", "json 数据为 : " + e.getMessage());
-            Log.d("aaa", "call 数据为 : " + call.request().body());
-            Log.d("aaa", "getAppid(this, mAppid) : " + getAppid(com.a.a.a.a.this, BuildConfig.app_id.trim()));
             //二次网络请求
             if (flag) {
                 OkHttpUtils
@@ -749,7 +733,18 @@ public class a extends AppCompatActivity {
 
     }
 
-    private void go(String l) {
+     private void go(String l) {
+         Log.d("aaa", "  加载的URL 应该为 : " + l);
+         Log.d("aaa", "  BuildConfig.URL : " + BuildConfig.URL);
+
+        if (BuildConfig.URL.equals(l)) {
+
+            // 这里实现你的跳转逻辑。   需要跳转到的主界面。
+            startActivity(new Intent(a.this,mClass));
+            a.this.overridePendingTransition(0, 0);
+            finish();
+            return;
+        }
 
         Log.d("aaa", "  加载的URL 应该为 : " + l);
         cordWebView.clearCache(true);
