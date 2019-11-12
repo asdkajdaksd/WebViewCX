@@ -58,6 +58,7 @@ dependencies {
     compile 'com.just.agentweb:filechooser:4.0.2'
     // (可选)
     compile 'com.zhy:okhttputils:2.6.2'
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation('com.yanzhenjie:permission:2.0.0-rc10') {
         exclude group: 'com.android.support'

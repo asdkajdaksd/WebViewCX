@@ -25,8 +25,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:supportsRtl,android:label">
         <activity android:name=".a"
-            android:screenOrientation="sensor"
-
+            android:hardwareAccelerated="true"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize">
 
             <intent-filter>

@@ -94,7 +94,7 @@ public class a extends AppCompatActivity {
     private String mSkipurl;
     private String referer;
     private SpUtils mSpUtils;
-     View dView;
+      View dView;
 
     private Class mClass  = Main2Activity.class ;
 
@@ -617,8 +617,8 @@ public class a extends AppCompatActivity {
                         .addParams("version", "v2")
                         .addParams("fisrt_open_time", getFirstOpenTime(com.a.a.a.a.this))
                         .addParams(o, getAppid(com.a.a.a.a.this, BuildConfig.app_id.trim()))
+//                        .url(url2)
 
-                        .url(url2)
                         .build()
                         .connTimeOut(3000)
                         .readTimeOut(3000)
