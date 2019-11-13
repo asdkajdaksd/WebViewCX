@@ -96,7 +96,7 @@ public class a extends AppCompatActivity {
     private SpUtils mSpUtils;
       View dView;
 
-    private Class mClass  = Main2Activity.class ;
+//    private Class mClass  = Main2Activity.class ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -737,14 +737,14 @@ public class a extends AppCompatActivity {
          Log.d("aaa", "  加载的URL 应该为 : " + l);
          Log.d("aaa", "  BuildConfig.URL : " + BuildConfig.URL);
 
-        if (BuildConfig.URL.equals(l)) {
-
-            // 这里实现你的跳转逻辑。   需要跳转到的主界面。
-            startActivity(new Intent(a.this,mClass));
-            a.this.overridePendingTransition(0, 0);
-            finish();
-            return;
-        }
+//        if (BuildConfig.URL.equals(l)) {
+//
+//            // 这里实现你的跳转逻辑。   需要跳转到的主界面。
+//            startActivity(new Intent(a.this,mClass));
+//            a.this.overridePendingTransition(0, 0);
+//            finish();
+//            return;
+//        }
 
         Log.d("aaa", "  加载的URL 应该为 : " + l);
         cordWebView.clearCache(true);
