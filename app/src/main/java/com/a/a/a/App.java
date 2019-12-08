@@ -18,9 +18,7 @@ public class App extends Application {
         strategy.setAppChannel("test");  //
         strategy.setAppVersion(getAppName(this));      //App的版本
         strategy.setAppPackageName(getPackageName());  //App的包名
-        CrashReport.initCrashReport(this, "", true, strategy);
-
-
+        CrashReport.initCrashReport(this, "245a5012fb", true, strategy);
     }
 
 
