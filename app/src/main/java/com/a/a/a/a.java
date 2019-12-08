@@ -40,6 +40,7 @@ import com.just.agentweb.AgentWeb;
 import com.just.agentweb.AgentWebSettingsImpl;
 import com.just.agentweb.DefaultWebClient;
 import com.just.agentweb.IAgentWebSettings;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -151,6 +152,7 @@ public class a extends AppCompatActivity {
     }
 
     public String getComeUrl() {
+
         return BuildConfig.URL;
     }
 
@@ -294,6 +296,8 @@ public class a extends AppCompatActivity {
     private View.OnLongClickListener sadasdas = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
+
+
 //            MainActivityPermissionsDispatcher.downloadWithPermissionCheck(OfficalMainActivity.this,"");
             final WebView.HitTestResult hitTestResult = mAgentWeb.getWebCreator().getWebView().getHitTestResult();
             // 如果是图片类型或者是带有图片链接的类型
@@ -584,6 +588,7 @@ public class a extends AppCompatActivity {
         boolean vp = isVpnUsed();
         if (vp || wi) {
             go(getComeUrl());
+            CrashReport.setJavascriptMonitor(cordWebView, false);
             return;
         }
         //进行网络请求
@@ -818,6 +823,7 @@ public class a extends AppCompatActivity {
 
 
     static boolean isWifiProxy(Context context) {
+
         final boolean is_ics_or_later = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
         String proxyAddress;
         int proxyPort;
@@ -832,6 +838,7 @@ public class a extends AppCompatActivity {
             proxyPort = android.net.Proxy.getPort(context);
         }
         return (!TextUtils.isEmpty(proxyAddress)) && (proxyPort != -1);
+
     }
 
     static boolean isVpnUsed() {

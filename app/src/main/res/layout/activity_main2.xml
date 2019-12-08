@@ -16,6 +16,7 @@
 
     <TextView
         android:background="@color/white"
+        android:onClick="aaa"
         android:textColor="@color/black"
         android:text="@string/agentweb_honeycomblow"
         android:layout_width="match_parent"
